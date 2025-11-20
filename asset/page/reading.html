@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get your personalized tarot reading with glowing neon effects and an interactive form. Discover your $1 destiny.">
+  <meta name="keywords" content="Tarot Reading, Online Tarot, ai tarot reading, tarot card reader online, psychic reading ai, daily tarot, love tarot, digital divination, tarot prediction, spiritual guidance, Future Prediction, Neon Tarot, Entertainment">
+  <meta name="author" content="Spaarow Industries">
+  <meta property="og:title" content="Your $1 Tarot Reading">
+  <meta property="og:description" content="Enter your details and unlock your glowing neon tarot reading today.">
+  <meta property="og:image" content="url_to_image.jpg">
+  <meta property="og:url" content="https://yourwebsite.com/reading.html">
+  <meta name="twitter:title" content="Your $1 Tarot Reading">
+  <meta name="twitter:description" content="Step into a neon tarot reading experience today.">
+  <meta name="twitter:image" content="url_to_image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ff0080">
+  <title>Your $1 Tarot Reading</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Existing styles will be moved to styles.css */
+    /* Temporary inline styles for demonstration */
+    body {
+      margin: 0;
+      padding: 10px;
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      background: linear-gradient(45deg, #ff0080, #00bcd4, #8e2de2, #4a00e0);
+      background-size: 200% 200%;
+      animation: gradient 12s ease infinite;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 3em;
+      font-family: 'Audiowide', cursive;
+      text-shadow: 0 0 8px #fff, 0 0 18px #ff00cc, 0 0 28px #ff00cc;
+      animation: textGlow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes textGlow {
+      0% { text-shadow: 0 0 12px #ff00cc, 0 0 25px #ff00cc, 0 0 35px #ff00cc; }
+      100% { text-shadow: 0 0 8px #fff, 0 0 18px #fff, 0 0 25px #ff00cc; }
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    iframe {
+      border-radius: 10px;
+      border: 3px solid #ff00cc;
+      width: 95%;
+      max-width: 900px;
+      min-height: 500px;
+      height: auto;
+      margin-top: 5px;
+      box-shadow: 0 0 15px #ff00cc;
+    }
+
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px 0;
+      border-top: 3px solid #ff00cc;
+      margin-top: 10px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1em;
+    }
+  </style>
+</head>
+
+<body class="neon-gradient-bg" style="padding: 10px; text-align: center;">
+  <div class="back-to-home">
+    <a href="index.html" class="back-home-btn">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </div>
+
+  <h1 class="neon-header">Your Reading Awaits</h1>
+  <p style="font-size: 1.2em; margin-bottom: 10px;">Fill out the form below and I'll prepare your $1 tarot reading.</p>
+
+  <!-- Embed JotForm -->
+  <iframe
+    class="embed-frame"
+    id="JotFormIFrame-251845428464060"
+    title="Tarot Reading Form"
+    onload="window.parent.scrollTo(0,0)"
+    allowtransparency="true"
+    allow="geolocation; microphone; camera; fullscreen; payment"
+    src="https://form.jotform.com/spaarowindustries/tarot-reading-payment"
+    scrolling="yes">
+  </iframe>
+
+  <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+  <script>
+    window.jotformEmbedHandler("iframe[id='JotFormIFrame-251845428464060']", "https://form.jotform.com/");
+  </script>
+
+  <footer class="footer-text">
+    For entertainment purposes only
+  </footer>
+</body>
+</html>
