@@ -1,0 +1,20 @@
+{
+  "name": "hub",
+  "version": "1.0.0",
+  "description": "personal website landing page for ai apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lost1x/hub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lost1x/hub/issues"
+  },
+  "homepage": "https://github.com/lost1x/hub#readme"
+}
