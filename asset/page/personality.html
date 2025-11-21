@@ -1,31 +1,117 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personality Test - $1 Per Use</title>
+  <title>Personality Test - AI Fun Hub</title>
   <meta name="description" content="Discover your personality traits for just $1 per test.">
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#4a00e0">
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    body { background: linear-gradient(45deg, #4a00e0, #00bcd4, #ff0080, #8e2de2); color: white; font-family: 'Orbitron', sans-serif; text-align: center; }
-    h1 { font-family: 'Audiowide', cursive; margin-top: 30px; }
-    iframe { border-radius: 10px; border: 3px solid #4a00e0; width: 95%; max-width: 900px; min-height: 500px; margin-top: 10px; box-shadow: 0 0 15px #4a00e0; }
-    .back-to-home { margin: 20px 0; }
-    .back-home-btn { color: #fff; text-decoration: none; font-size: 1.1em; }
-    .back-home-btn i { margin-right: 8px; }
-    footer { margin-top: 20px; border-top: 3px solid #4a00e0; padding: 16px 0; font-size: 1em; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', 'Poppins', sans-serif;
+      color: #fff;
+      background: linear-gradient(120deg, #4a00e0, #00bcd4, #ff0080, #8e2de2);
+      background-size: 200% 200%;
+      animation: gradient 12s ease infinite;
+      text-align: center;
+      min-height: 100vh;
+    }
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .back-to-home {
+      margin: 24px 0 0 0;
+    }
+    .back-home-btn {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1em;
+      font-family: 'Poppins', sans-serif;
+      transition: color 0.2s;
+    }
+    .back-home-btn:hover {
+      color: #4a00e0;
+    }
+    .back-home-btn i {
+      margin-right: 8px;
+    }
+    .hub-header {
+      font-family: 'Audiowide', cursive;
+      font-size: 2.7em;
+      margin-top: 18px;
+      text-shadow: 0 0 12px #4a00e0, 0 0 25px #ff0080;
+      animation: textGlow 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes textGlow {
+      0% { text-shadow: 0 0 18px #4a00e0, 0 0 25px #ff0080; }
+      100% { text-shadow: 0 0 8px #fff, 0 0 18px #fff, 0 0 25px #ff0080; }
+    }
+    .hub-desc {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .hub-card {
+      background: rgba(0,0,0,0.35);
+      border-radius: 18px;
+      box-shadow: 0 0 18px #4a00e0;
+      display: inline-block;
+      padding: 32px 24px 24px 24px;
+      margin: 24px auto 0 auto;
+      max-width: 600px;
+      width: 95%;
+    }
+    .hub-card h2 {
+      font-family: 'Audiowide', cursive;
+      font-size: 2em;
+      margin-bottom: 8px;
+      color: #4a00e0;
+    }
+    .hub-card p {
+      font-size: 1.1em;
+      margin-bottom: 18px;
+    }
+    iframe {
+      border-radius: 10px;
+      border: 3px solid #4a00e0;
+      width: 100%;
+      min-height: 420px;
+      box-shadow: 0 0 15px #4a00e0;
+      margin-bottom: 12px;
+    }
+    footer {
+      margin-top: 32px;
+      border-top: 3px solid #4a00e0;
+      padding: 16px 0;
+      font-size: 1em;
+      font-family: 'Poppins', sans-serif;
+      opacity: 0.85;
+    }
+    @media (max-width: 600px) {
+      .hub-header { font-size: 2em; }
+      .hub-card { padding: 18px 8px; }
+      iframe { min-height: 320px; }
+    }
   </style>
 </head>
 <body>
   <div class="back-to-home">
     <a href="../../index.html" class="back-home-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
-  <h1>Personality Test</h1>
-  <p>Start your $1 personality test below.</p>
-  <!-- Embed payment form (replace src with your form link) -->
-  <iframe src="https://form.jotform.com/spaarowindustries/personality-test-payment" title="Personality Test Payment"></iframe>
+  <div class="hub-header">🎭 Personality Test</div>
+  <div class="hub-desc">Start your $1 personality test and discover your unique traits!</div>
+  <div class="hub-card">
+    <h2>Personality Test</h2>
+    <p>Unlock a personalized personality analysis for just $1. Secure payment required to begin.</p>
+    <iframe src="https://form.jotform.com/spaarowindustries/personality-test-payment" title="Personality Test Payment"></iframe>
+  </div>
   <footer>For entertainment purposes only</footer>
 </body>
 </html>

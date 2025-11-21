@@ -941,7 +941,13 @@
                         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" name="submit" alt="Buy Now with PayPal" />
                     </form>
                 </div>
-                <br>
+                    <div class="content-container immersive-tarot">
+                        <div id="tarot-qa-container" class="tarot-qa-container">
+                            <!-- Q&A will be injected here -->
+                        </div>
+                        <button id="tarot-next-btn" class="tarot-next-btn" style="display:none;">Next</button>
+                        <button id="tarot-submit-btn" class="tarot-submit-btn" style="display:none;">Submit & Pay $1</button>
+                    </div>
                 <div class="retake-section">
                     <button class="retake-btn" onclick="retakeQuiz()">
                         <i class="fas fa-redo"></i> Retake Quiz
@@ -1028,6 +1034,131 @@
             }
         });
     </script>
+        <script>
+        // Immersive Tarot Q&A logic
+        document.addEventListener("DOMContentLoaded", () => {
+            // Tarot questions and mystical replies
+            const tarotQuestions = [
+                { q: "What is your name?", mystical: "A name holds power in the cards..." },
+                { q: "How old are you?", mystical: "Age is but a number, yet the stars take note..." },
+                { q: "Where were you born?", mystical: "Birthplace marks your journey's beginning..." },
+                { q: "Describe your upbringing in one word.", mystical: "The past shapes the present, as the cards reveal..." },
+                { q: "What is your greatest hope?", mystical: "Hope is the light that guides your path..." },
+                { q: "What is your greatest fear?", mystical: "Fear is a shadow, but the cards bring clarity..." },
+                { q: "What question do you seek an answer to?", mystical: "The cards listen to your deepest questions..." },
+                { q: "What is your favorite color?", mystical: "Colors reflect your aura, vibrant and true..." },
+                { q: "Do you believe in fate?", mystical: "Fate weaves its tapestry in mysterious ways..." },
+                { q: "Describe your current mood.", mystical: "Mood is the wind that stirs the cards..." },
+                { q: "What is your spirit animal?", mystical: "Spirit animals guide your journey..." },
+                { q: "What is your dream destination?", mystical: "Destinations call to your soul..." },
+                { q: "What is your favorite season?", mystical: "Seasons turn, and so does fortune..." },
+                { q: "What is your lucky number?", mystical: "Numbers hold secrets in the tarot..." },
+                { q: "What do you wish to change?", mystical: "Change is the only constant, the cards whisper..." }
+            ];
+            let currentQ = 0;
+            const answers = [];
+            const qaContainer = document.getElementById('tarot-qa-container');
+            const nextBtn = document.getElementById('tarot-next-btn');
+            const submitBtn = document.getElementById('tarot-submit-btn');
+
+            function typeReply(text, el, speed=35) {
+                el.textContent = '';
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        el.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed + Math.random()*40);
+                    }
+                }
+                type();
+            }
+
+            function showQuestion() {
+                qaContainer.innerHTML = `<div class='tarot-question'><label>${tarotQuestions[currentQ].q}</label><br><input type='text' id='tarot-answer-input' value='${answers[currentQ]||''}' style='width:80%;padding:8px;margin-top:8px;'></div><div class='tarot-reply' id='tarot-reply'></div>`;
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'none';
+                setTimeout(() => {
+                    typeReply(tarotQuestions[currentQ].mystical, document.getElementById('tarot-reply'));
+                    setTimeout(() => {
+                        if (currentQ < tarotQuestions.length-1) nextBtn.style.display = 'inline-block';
+                        else submitBtn.style.display = 'inline-block';
+                    }, 1200 + tarotQuestions[currentQ].mystical.length*35/2);
+                }, 400);
+            }
+
+            nextBtn.onclick = () => {
+                const input = document.getElementById('tarot-answer-input').value;
+                answers[currentQ] = input;
+                if (currentQ < tarotQuestions.length-1) currentQ++;
+                showQuestion();
+            };
+            submitBtn.onclick = () => {
+                const input = document.getElementById('tarot-answer-input').value;
+                answers[currentQ] = input;
+                // Email logic (server-side recommended)
+                // For now, redirect to PayPal
+                window.location.href = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PRQ3PX8LJSNHA";
+            };
+            showQuestion();
+        });
+        </script>
+        <style>
+        .immersive-tarot {
+            background: linear-gradient(120deg, #ff6b6b, #ee5a6f, #fff6f6, #ff6b6b);
+            border-radius: 18px;
+            box-shadow: 0 0 18px #ff6b6b;
+            padding: 32px 24px 24px 24px;
+            margin: 24px auto 0 auto;
+            max-width: 600px;
+            width: 95%;
+        }
+        .tarot-qa-container {
+            margin-bottom: 18px;
+        }
+        .tarot-question label {
+            font-size: 1.3em;
+            font-family: 'Poppins', cursive;
+            color: #ff6b6b;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .tarot-question input {
+            font-size: 1.1em;
+            border-radius: 8px;
+            border: 2px solid #ff6b6b;
+            padding: 8px 12px;
+            margin-top: 8px;
+            width: 80%;
+            background: #fff6f6;
+            color: #ff6b6b;
+        }
+        .tarot-reply {
+            font-size: 1.1em;
+            color: #ee5a6f;
+            font-family: 'Poppins', cursive;
+            margin-top: 18px;
+            min-height: 32px;
+            letter-spacing: 0.5px;
+        }
+        .tarot-next-btn, .tarot-submit-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin: 10px 0 0 0;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+        }
+        .tarot-next-btn:hover, .tarot-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.6);
+        }
+        </style>
     <script src="../js/script.js"></script>
     <script src="../js/quiz-data.js"></script>
     <script src="../js/certificate-generator.js"></script>

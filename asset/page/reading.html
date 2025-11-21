@@ -89,33 +89,102 @@
 
 <body class="neon-gradient-bg" style="padding: 10px; text-align: center;">
   <div class="back-to-home">
-    <a href="index.html" class="back-home-btn">
+    <a href="../../index.html" class="back-home-btn">
       <i class="fas fa-arrow-left"></i> Back to Home
     </a>
   </div>
 
-  <h1 class="neon-header">Your Reading Awaits</h1>
-  <p style="font-size: 1.2em; margin-bottom: 10px;">Fill out the form below and I'll prepare your $1 tarot reading.</p>
-
-  <!-- Embed JotForm -->
-  <iframe
-    class="embed-frame"
-    id="JotFormIFrame-251845428464060"
-    title="Tarot Reading Form"
-    onload="window.parent.scrollTo(0,0)"
-    allowtransparency="true"
-    allow="geolocation; microphone; camera; fullscreen; payment"
-    src="https://form.jotform.com/spaarowindustries/tarot-reading-payment"
-    scrolling="yes">
-  </iframe>
-
-  <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+  <div class="crystal-ball-bg"></div>
+  <div class="hub-header">🔮 Your Tarot Reading Awaits</div>
+  <div class="hub-desc">Answer 15 mystical questions and receive deep, AI-powered tarot insights. $1 per reading. Your answers will be emailed to xlost1foundx@gmail.com after payment.</div>
+  <div class="hub-card">
+    <form id="tarot-form">
+      <div class="tarot-question" id="question-container">
+        <!-- Questions will be injected here -->
+      </div>
+      <button type="button" id="next-btn" class="next-btn">Next</button>
+      <button type="button" id="prev-btn" class="prev-btn">Previous</button>
+      <button type="submit" id="submit-btn" class="submit-btn" style="display:none;">Submit & Pay $1</button>
+    </form>
+    <div id="tarot-reply" class="tarot-reply"></div>
+    <div id="payment-section" style="display:none;">
+      <h2>Complete Payment</h2>
+      <p>To receive your full reading, please pay $1 below. After payment, your answers will be emailed to xlost1foundx@gmail.com.</p>
+      <iframe src="https://form.jotform.com/spaarowindustries/tarot-reading-payment" title="Tarot Reading Payment" style="width:100%;min-height:320px;border-radius:10px;border:3px solid #ff0080;"></iframe>
+    </div>
+    <div id="confirmation" style="display:none;">
+      <h2>Thank You!</h2>
+      <p>Your mystical reading will be sent to your email soon. For entertainment purposes only.</p>
+    </div>
+  </div>
+  <footer class="footer-text">For entertainment purposes only</footer>
   <script>
-    window.jotformEmbedHandler("iframe[id='JotFormIFrame-251845428464060']", "https://form.jotform.com/");
-  </script>
+    // Tarot questions
+    const tarotQuestions = [
+      { q: "What is your name?", mystical: "A name holds power in the cards..." },
+      { q: "How old are you?", mystical: "Age is but a number, yet the stars take note..." },
+      { q: "Where were you born?", mystical: "Birthplace marks your journey's beginning..." },
+      { q: "Describe your upbringing in one word.", mystical: "The past shapes the present, as the cards reveal..." },
+      { q: "What is your greatest hope?", mystical: "Hope is the light that guides your path..." },
+      { q: "What is your greatest fear?", mystical: "Fear is a shadow, but the cards bring clarity..." },
+      { q: "What question do you seek an answer to?", mystical: "The cards listen to your deepest questions..." },
+      { q: "What is your favorite color?", mystical: "Colors reflect your aura, vibrant and true..." },
+      { q: "Do you believe in fate?", mystical: "Fate weaves its tapestry in mysterious ways..." },
+      { q: "Describe your current mood.", mystical: "Mood is the wind that stirs the cards..." },
+      { q: "What is your spirit animal?", mystical: "Spirit animals guide your journey..." },
+      { q: "What is your dream destination?", mystical: "Destinations call to your soul..." },
+      { q: "What is your favorite season?", mystical: "Seasons turn, and so does fortune..." },
+      { q: "What is your lucky number?", mystical: "Numbers hold secrets in the tarot..." },
+      { q: "What do you wish to change?", mystical: "Change is the only constant, the cards whisper..." }
+    ];
+    let currentQ = 0;
+    const answers = [];
+    const form = document.getElementById('tarot-form');
+    const questionContainer = document.getElementById('question-container');
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const replyDiv = document.getElementById('tarot-reply');
+    const paymentSection = document.getElementById('payment-section');
+    const confirmation = document.getElementById('confirmation');
 
-  <footer class="footer-text">
-    For entertainment purposes only
-  </footer>
+    function showQuestion() {
+      questionContainer.innerHTML = `<label>${tarotQuestions[currentQ].q}</label><br><input type="text" id="answer-input" value="${answers[currentQ]||''}" style="width:80%;padding:8px;margin-top:8px;">`;
+      replyDiv.textContent = tarotQuestions[currentQ].mystical;
+      prevBtn.style.display = currentQ > 0 ? 'inline-block' : 'none';
+      nextBtn.style.display = currentQ < tarotQuestions.length-1 ? 'inline-block' : 'none';
+      submitBtn.style.display = currentQ === tarotQuestions.length-1 ? 'inline-block' : 'none';
+    }
+
+    nextBtn.onclick = () => {
+      const input = document.getElementById('answer-input').value;
+      answers[currentQ] = input;
+      if (currentQ < tarotQuestions.length-1) currentQ++;
+      showQuestion();
+    };
+    prevBtn.onclick = () => {
+      const input = document.getElementById('answer-input').value;
+      answers[currentQ] = input;
+      if (currentQ > 0) currentQ--;
+      showQuestion();
+    };
+    form.onsubmit = (e) => {
+      e.preventDefault();
+      const input = document.getElementById('answer-input').value;
+      answers[currentQ] = input;
+      form.style.display = 'none';
+      replyDiv.style.display = 'none';
+      paymentSection.style.display = 'block';
+    };
+    // After payment, you would trigger email logic (server-side recommended)
+    // For demo, show confirmation after 10s
+    paymentSection.addEventListener('load', () => {
+      setTimeout(() => {
+        paymentSection.style.display = 'none';
+        confirmation.style.display = 'block';
+      }, 10000);
+    });
+    showQuestion();
+  </script>
 </body>
 </html>
